@@ -1,27 +1,107 @@
+:root {
+  font-family: "Montserrat", serif;
+  font-size: 16px;
+  color: #e1efff;
+  box-sizing: border-box;
+}
+
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   /* outline: red 1px solid; */
-  font-family: sans-serif;
-  color: #e1efff;
 }
 
 /* body */
 body {
   width: 100%;
   height: 100vh;
+  background-color: #2a3d50;
+  position: relative;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #2a3d50;
+}
+
+.landing {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 5;
+  background-color: #2a3d50ff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing input {
+  background-color: #a9c9d8;
+  outline: none;
+  height: 2rem;
+  width: 20rem;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 1rem;
+  font-size: 2rem;
+  border: none;
+  transition: 100ms;
+}
+
+.landing input:hover {
+  background-color: #ece6ff;
+}
+
+.landing button {
+  margin: 1rem;
+  outline: none;
+  background-color: #415a6b;
+  border: none;
+  width: 7rem;
+  height: 3rem;
+  border-radius: 2rem;
+  color: #e1efff;
+  font-size: 1.5rem;
+  transition: 100ms;
+  cursor: pointer;
+}
+
+.landing button:hover {
+  background-color: #1a1a26;
+  color: #e1efff5b;
+  transform: scale(1.1);
+}
+
+.landing.game {
+  z-index: -5;
+  transform: translateY(200%);
+}
+
+h1 {
+  margin: 1rem;
+  font-size: 3rem;
+}
+
+h1 span.x {
+  color: #4a90e2;
+}
+h1 span.o {
+  color: #00bcd4;
+}
+
+.gameContainer {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* papan game */
 .gameBoard {
-  width: 650px;
-  height: 650px;
-  padding: 2%;
+  width: 40rem;
+  height: 40rem;
+  padding: 2rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
@@ -33,8 +113,8 @@ body {
 .gameBoard .box {
   /* border: 1px solid #b0b3c2; */
   background-color: #415a6b;
-  margin: 2px;
-  font-size: 48px;
+  margin: 0.15rem;
+  font-size: 8rem;
   display: flex;
   align-items: center;
   justify-content: center;
