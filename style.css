@@ -8,6 +8,7 @@
 * {
   margin: 0;
   padding: 0;
+  /* outline bawah ini buat testing */
   /* outline: red 1px solid; */
 }
 
@@ -23,6 +24,7 @@ body {
   align-items: center;
 }
 
+/* landing */
 .landing {
   width: 100%;
   height: 100%;
@@ -34,7 +36,6 @@ body {
   justify-content: center;
   align-items: center;
 }
-
 .landing input {
   background-color: #a9c9d8;
   outline: none;
@@ -47,11 +48,9 @@ body {
   border: none;
   transition: 100ms;
 }
-
 .landing input:hover {
   background-color: #ece6ff;
 }
-
 .landing button {
   margin: 1rem;
   outline: none;
@@ -64,19 +63,20 @@ body {
   font-size: 1.5rem;
   transition: 100ms;
   cursor: pointer;
+  font-weight: bold;
 }
-
 .landing button:hover {
   background-color: #1a1a26;
   color: #e1efff5b;
   transform: scale(1.1);
 }
-
+/* delete lending */
 .landing.game {
   z-index: -5;
-  transform: translateY(200%);
+  transform: translateY(2000%);
 }
 
+/* buat text di atas */
 h1 {
   margin: 1rem;
   font-size: 3rem;
@@ -89,24 +89,54 @@ h1 span.o {
   color: #00bcd4;
 }
 
+/* game */
 .gameContainer {
   position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  top: 10%;
+}
+
+/* tombol restart */
+.restartButton {
+  position: absolute;
+  z-index: 10;
+  top: 12.5%;
+  outline: none;
+  border: none;
+  background-color: #415a6b;
+  padding: 0.8rem;
+  color: #e1efff;
+  font-weight: bold;
+  font-size: 1.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 0 0.2rem #1a1a26;
+  cursor: pointer;
+}
+.restartButton:hover {
+  background-color: #1a1a26;
+  transform: scale(1.1);
+}
+.restartButton.game {
+  transform: translateY(2000%);
 }
 
 /* papan game */
 .gameBoard {
-  width: 40rem;
-  height: 40rem;
-  padding: 2rem;
+  width: 35rem;
+  height: 35rem;
+  padding: 1rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   border-radius: 2.5%;
   background-color: #1a2633;
+}
+
+.gameBoard.end {
+  transform: translateY(10%);
 }
 
 /* box-box tictactoe */

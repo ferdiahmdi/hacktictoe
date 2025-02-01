@@ -10,6 +10,8 @@ const playerNumber = document.getElementById("playerNumber");
 const landing = document.querySelector(".landing");
 const gameHeaderText = document.querySelector(".gameContainer h1");
 const turn = document.getElementById("turn");
+const restart = document.getElementById("restartButton");
+const gameBoard = document.querySelector("div.gameBoard");
 
 // function untuk input nama player
 let playNum = 1;
@@ -39,25 +41,30 @@ function handlePlayerName() {
     }</span>'s Turn!`;
   }
 }
+// function handleEnter buat jalanin handlePlayerName dengan 'Enter'
+playerName.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") handlePlayerName();
+});
 
 // giliran tic tac toe dan gamestate
 let currentTurn = "O";
 let gameWin = false;
+let gameTie = false;
 
 // deklarasi array untuk menyimpan kondisi game pada history game
 let gameHistory = ["", "", "", "", "", "", "", "", ""];
 
 // update turn text pada function handleBoxClick
 function turnText() {
-  if (turn.textContent === players[0]) {
-    turn.textContent = players[1];
+  if (turn.innerHTML === players[0]) {
+    turn.innerHTML = players[1];
     turn.classList.toggle("o");
     turn.classList.toggle("x");
     gameHeaderText.innerHTML = `It's <span class="${currentTurn.toLowerCase()}" id="turn">${
       players[1]
     }</span>'s Turn!`;
   } else {
-    turn.textContent = players[0];
+    turn.innerHTML = players[0];
     turn.classList.toggle("o");
     turn.classList.toggle("x");
     gameHeaderText.innerHTML = `It's <span class="${currentTurn.toLowerCase()}" id="turn">${
@@ -80,25 +87,11 @@ function handleBoxClick(event) {
 
   // pemasangan class untuk dekorasi background dan mengganti turn
   if (currentTurn === "X") {
-    currentBox.classList.add("x");
-    // cek kondisi game w/l
-    if (gameChecker()) {
-      alert(`${currentTurn} Won!`);
-      gameWin = true;
-      deleteAllEventListener(boxes);
-    } else {
-      currentTurn = "O";
-    }
+    gameChecker(currentTurn, currentBox);
+    currentTurn = "O";
   } else if (currentTurn === "O") {
-    currentBox.classList.add("o");
-    // cek kondisi game w/l
-    if (gameChecker()) {
-      alert(`${currentTurn} Won!`);
-      gameWin = true;
-      deleteAllEventListener(boxes);
-    } else {
-      currentTurn = "X";
-    }
+    gameChecker(currentTurn, currentBox);
+    currentTurn = "X";
   }
 
   // ganti tulisan player
@@ -107,10 +100,12 @@ function handleBoxClick(event) {
   // ganti text atas apabila menang
   if (gameWin) {
     if (currentTurn.toLowerCase() === "o") {
-      gameHeaderText.textContent = `${players[0]} WON!`;
+      gameHeaderText.innerHTML = `${players[1]} WON!`;
     } else {
-      gameHeaderText.textContent = `${players[1]} WON!`;
+      gameHeaderText.innerHTML = `${players[0]} WON!`;
     }
+  } else if (gameTie) {
+    gameHeaderText.innerHTML = `DRAW!`;
   }
 
   // delete function ini dari box agar tidak bisa diclick lagi
@@ -146,8 +141,25 @@ const winConditions = [
   [2, 4, 6],
 ];
 
+// function untuk call function menang dan draw
+function gameChecker(currTurn, currBox) {
+  currBox.classList.add(currTurn.toLowerCase());
+  if (gameStatus()) {
+    // alert(`${currTurn} Won!`);
+    gameWin = true;
+    deleteAllEventListener(boxes);
+    gameBoard.classList.toggle("end");
+    restart.classList.toggle("game");
+  } else if (gameDraw()) {
+    gameTie = true;
+    deleteAllEventListener(boxes);
+    gameBoard.classList.toggle("end");
+    restart.classList.toggle("game");
+  }
+}
+
 // function untuk check kondisi menang game setelah setiap click
-function gameChecker() {
+function gameStatus() {
   for (let condition of winConditions) {
     const [a, b, c] = condition;
     if (
@@ -159,4 +171,33 @@ function gameChecker() {
     }
   }
   return false;
+}
+
+// function untuk check draw game
+function gameDraw() {
+  for (let index of boxes) {
+    if (index.innerHTML === "") {
+      return false;
+    }
+  }
+  return true;
+}
+
+function restartGame() {
+  9;
+  gameBoard.classList.toggle("end");
+  restart.classList.toggle("game");
+  currentTurn = "O";
+  gameWin = false;
+  gameTie = false;
+  playNum = 1;
+  players = [];
+  landing.classList.toggle("game");
+
+  for (let index of boxes) {
+    index.textContent = "";
+    index.classList.remove("o");
+    index.classList.remove("x");
+  }
+  makeEventListenerBoxes(boxes);
 }
