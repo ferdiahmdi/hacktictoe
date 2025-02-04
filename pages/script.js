@@ -59,6 +59,11 @@ function handlePlayerName() {
       displayTurn.innerHTML = "O";
       displayName.classList.add("o");
       displayTurn.classList.add("o");
+
+      for (const element of boxes) {
+        element.style.cursor = "pointer";
+        // console.log(element);
+      }
     }
   }
 }
@@ -109,8 +114,6 @@ function turnText() {
 
     displayName.innerHTML = players[0];
     displayTurn.innerHTML = "O";
-
-    boxes[i].style.cursor = "pointer";
   }
 }
 
