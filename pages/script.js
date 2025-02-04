@@ -142,11 +142,14 @@ function handleBoxClick(event) {
   if (gameWin) {
     if (currentTurn.toLowerCase() === "o") {
       gameHeaderText.innerHTML = `${players[1]} WON!`;
+      saveGameResult(players[1]);
     } else {
       gameHeaderText.innerHTML = `${players[0]} WON!`;
+      saveGameResult(players[0]);
     }
   } else if (gameTie) {
     gameHeaderText.innerHTML = `DRAW!`;
+    saveGameResult("draw");
   } else {
     // ganti tulisan player
     turnText();
@@ -227,6 +230,7 @@ function gameDraw() {
   return true;
 }
 
+//========== function untuk memulai kembali dari awal
 function restartGame() {
   9;
   gameBoard.classList.toggle("end");
@@ -245,4 +249,27 @@ function restartGame() {
     index.classList.remove("x");
   }
   makeEventListenerBoxes(boxes);
+
+  displayName.classList.remove("o");
+  displayTurn.classList.remove("o");
+  displayName.classList.remove("x");
+  displayTurn.classList.remove("x");
+}
+
+//========== function untuk menyimpan kemenangan pada sessionstorage
+function saveGameResult(gameResult) {
+  let resultObj = { players: players };
+  if (gameResult === "draw") {
+    resultObj["result"] = "draw";
+  } else {
+    resultObj["result"] = gameResult;
+  }
+
+  const getStorageData =
+    JSON.parse(sessionStorage.getItem("resultHistory")) || [];
+
+  getStorageData.push(resultObj);
+  sessionStorage.setItem("resultHistory", JSON.stringify(getStorageData));
+
+  console.log("resultHistory", getStorageData);
 }
