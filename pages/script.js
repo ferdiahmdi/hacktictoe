@@ -13,34 +13,53 @@ const turn = document.getElementById("turn");
 const restart = document.getElementById("restartButton");
 const gameBoard = document.querySelector("div.gameBoard");
 const gameContainer = document.querySelector(".gameContainer");
+const displayName = document.getElementById("displayName");
+const displayTurn = document.getElementById("displayTurn");
 
 //========== function untuk input nama player
 let playNum = 1;
 let players = [];
 function handlePlayerName() {
   if (playNum === 1) {
-    players.push(playerName.value);
-    playerName.value = "";
-    playNum = 2;
-    playerNumber.textContent = "Second";
-    playerNumber.classList.toggle("o");
-    playerNumber.classList.toggle("x");
-    playButton.textContent = "PLAY";
+    if (!playerName.value) {
+      alert("Please Insert A Name!");
+    } else {
+      players.push(playerName.value);
+      playerName.value = "";
+
+      playNum = 2;
+      playerNumber.textContent = "Second";
+      playerNumber.classList.toggle("o");
+      playerNumber.classList.toggle("x");
+      playButton.textContent = "PLAY";
+    }
   } else {
     // untuk mereset form buat next game dan pindah ke container game
-    players.push(playerName.value);
-    playerName.value = "";
-    playNum = 1;
-    playerNumber.textContent = "First";
-    playerNumber.classList.toggle("o");
-    playerNumber.classList.toggle("x");
-    playButton.textContent = "GO";
-    landing.classList.toggle("game");
-    turn.innerHTML = players[0];
-    gameHeaderText.innerHTML = `It's <span class="${currentTurn.toLowerCase()}" id="turn">${
-      players[0]
-    }</span>'s Turn!`;
-    gameContainer.classList.toggle("none");
+    if (!playerName.value) {
+      alert("Please Insert A Name!");
+    } else {
+      players.push(playerName.value);
+      playerName.value = "";
+
+      playNum = 1;
+
+      playerNumber.textContent = "First";
+      playerNumber.classList.toggle("o");
+      playerNumber.classList.toggle("x");
+      playButton.textContent = "GO";
+
+      landing.classList.toggle("game");
+      turn.innerHTML = players[0];
+      gameHeaderText.innerHTML = `It's <span class="${currentTurn.toLowerCase()}" id="turn">${
+        players[0]
+      }</span>'s Turn!`;
+      gameContainer.classList.toggle("none");
+
+      displayName.innerHTML = players[0];
+      displayTurn.innerHTML = "O";
+      displayName.classList.add("o");
+      displayTurn.classList.add("o");
+    }
   }
 }
 //========== function handleEnter buat jalanin handlePlayerName dengan 'Enter'
@@ -60,18 +79,38 @@ let gameHistory = ["", "", "", "", "", "", "", "", ""];
 function turnText() {
   if (turn.innerHTML === players[0]) {
     turn.innerHTML = players[1];
+
     turn.classList.toggle("o");
     turn.classList.toggle("x");
+    displayName.classList.toggle("o");
+    displayName.classList.toggle("x");
+    displayTurn.classList.toggle("o");
+    displayTurn.classList.toggle("x");
+
     gameHeaderText.innerHTML = `It's <span class="${currentTurn.toLowerCase()}" id="turn">${
       players[1]
     }</span>'s Turn!`;
+
+    displayName.innerHTML = players[1];
+    displayTurn.innerHTML = "X";
   } else {
     turn.innerHTML = players[0];
+
     turn.classList.toggle("o");
     turn.classList.toggle("x");
+    displayName.classList.toggle("o");
+    displayName.classList.toggle("x");
+    displayTurn.classList.toggle("o");
+    displayTurn.classList.toggle("x");
+
     gameHeaderText.innerHTML = `It's <span class="${currentTurn.toLowerCase()}" id="turn">${
       players[0]
     }</span>'s Turn!`;
+
+    displayName.innerHTML = players[0];
+    displayTurn.innerHTML = "O";
+
+    boxes[i].style.cursor = "pointer";
   }
 }
 
@@ -96,9 +135,6 @@ function handleBoxClick(event) {
     currentTurn = "X";
   }
 
-  // ganti tulisan player
-  turnText();
-
   // ganti text atas apabila menang
   if (gameWin) {
     if (currentTurn.toLowerCase() === "o") {
@@ -108,6 +144,9 @@ function handleBoxClick(event) {
     }
   } else if (gameTie) {
     gameHeaderText.innerHTML = `DRAW!`;
+  } else {
+    // ganti tulisan player
+    turnText();
   }
 
   // delete function ini dari box agar tidak bisa diclick lagi
