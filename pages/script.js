@@ -2,7 +2,7 @@
 // player pertama selalu O
 // player kedua selalu x
 
-// selector DOM
+//========== selector DOM
 const boxes = document.getElementsByClassName("box");
 const playButton = document.getElementById("playButton");
 const playerName = document.getElementById("playerName");
@@ -12,8 +12,9 @@ const gameHeaderText = document.querySelector(".gameContainer h1");
 const turn = document.getElementById("turn");
 const restart = document.getElementById("restartButton");
 const gameBoard = document.querySelector("div.gameBoard");
+const gameContainer = document.querySelector(".gameContainer");
 
-// function untuk input nama player
+//========== function untuk input nama player
 let playNum = 1;
 let players = [];
 function handlePlayerName() {
@@ -39,22 +40,23 @@ function handlePlayerName() {
     gameHeaderText.innerHTML = `It's <span class="${currentTurn.toLowerCase()}" id="turn">${
       players[0]
     }</span>'s Turn!`;
+    gameContainer.classList.toggle("none");
   }
 }
-// function handleEnter buat jalanin handlePlayerName dengan 'Enter'
+//========== function handleEnter buat jalanin handlePlayerName dengan 'Enter'
 playerName.addEventListener("keydown", function (event) {
   if (event.key === "Enter") handlePlayerName();
 });
 
-// giliran tic tac toe dan gamestate
+//========== giliran tic tac toe dan gamestate
 let currentTurn = "O";
 let gameWin = false;
 let gameTie = false;
 
-// deklarasi array untuk menyimpan kondisi game pada history game
+//========== deklarasi array untuk menyimpan kondisi game pada history game
 let gameHistory = ["", "", "", "", "", "", "", "", ""];
 
-// update turn text pada function handleBoxClick
+//========== update turn text pada function handleBoxClick
 function turnText() {
   if (turn.innerHTML === players[0]) {
     turn.innerHTML = players[1];
@@ -73,7 +75,7 @@ function turnText() {
   }
 }
 
-// function untuk mengganti box
+//========== function untuk mengganti box
 function handleBoxClick(event) {
   // deklarasi event
   const currentBox = event.target;
@@ -112,16 +114,16 @@ function handleBoxClick(event) {
   currentBox.removeEventListener("click", handleBoxClick);
 }
 
-// function untuk bikin eventListener click box
+//========== function untuk bikin eventListener click box
 function makeEventListenerBoxes(boxes) {
   for (let i = 0; i < boxes.length; i++) {
     boxes[i].addEventListener("click", handleBoxClick);
   }
 }
-// function call awal untuk box
+//========== function call awal untuk box
 makeEventListenerBoxes(boxes);
 
-// function untuk delete semua eventListener ketika ada kemenangan/draw
+//========== function untuk delete semua eventListener ketika ada kemenangan/draw
 function deleteAllEventListener(boxes) {
   for (let i = 0; i < boxes.length; i++) {
     boxes[i].removeEventListener("click", handleBoxClick);
@@ -129,7 +131,7 @@ function deleteAllEventListener(boxes) {
   }
 }
 
-// array kemenangan
+//========== array kemenangan
 const winConditions = [
   [0, 1, 2],
   [3, 4, 5],
@@ -141,7 +143,7 @@ const winConditions = [
   [2, 4, 6],
 ];
 
-// function untuk call function menang dan draw
+//========== function untuk call function menang dan draw
 function gameChecker(currTurn, currBox) {
   currBox.classList.add(currTurn.toLowerCase());
   if (gameStatus()) {
@@ -158,7 +160,7 @@ function gameChecker(currTurn, currBox) {
   }
 }
 
-// function untuk check kondisi menang game setelah setiap click
+//========== function untuk check kondisi menang game setelah setiap click
 function gameStatus() {
   for (let condition of winConditions) {
     const [a, b, c] = condition;
@@ -173,7 +175,7 @@ function gameStatus() {
   return false;
 }
 
-// function untuk check draw game
+//========== function untuk check draw game
 function gameDraw() {
   for (let index of boxes) {
     if (index.innerHTML === "") {
@@ -193,6 +195,7 @@ function restartGame() {
   playNum = 1;
   players = [];
   landing.classList.toggle("game");
+  gameContainer.classList.toggle("none");
 
   for (let index of boxes) {
     index.textContent = "";
