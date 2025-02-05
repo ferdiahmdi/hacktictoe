@@ -10,7 +10,7 @@
   <body>
     <h1>HackTicToe</h1>
     <button onclick="location.href='pages/tictactoe.html'">
-      <strong>Proceed</strong>
+      <strong>Proceed ╰┈➤</strong>
     </button>
 
     <div class="decorative element1"></div>
@@ -23,7 +23,8 @@
     <br></br>
     <br></br>
 
-    <button id="playToggle">🔊 Unmute</button>
+    <button id="muteButton">🔇 Mute</button>
+
 
     <audio id="player">
       <source src="bgm.mp3" type="audio/mp3" />
@@ -33,6 +34,7 @@
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const audio = document.getElementById("player");
+        const muteButton = document.getElementById("muteButton");
 
         // Restore previous playback position
         const savedTime = localStorage.getItem("audioTime");
@@ -57,6 +59,12 @@
         audio.addEventListener("ended", () => {
           audio.currentTime = 0;  // Reset to start
           audio.play();  // Start playing again
+        });
+
+        // Mute/Unmute functionality
+        muteButton.addEventListener("click", () => {
+          audio.muted = !audio.muted;  // Toggle mute
+          muteButton.textContent = audio.muted ? "🔊 Unmute" : "🔇 Mute";  // Update button text
         });
       });
     </script>

@@ -26,7 +26,7 @@
         placeholder="Insert Name"
       />
       <button type="submit" id="playButton" onclick="handlePlayerName()">
-        GO
+        GO 🏁
       </button>
     </div>
     <div class="gameContainer none">
@@ -37,7 +37,7 @@
         id="restartButton"
         onclick="restartGame()"
       >
-        RESTART
+        RESTART 🗘  
       </button>
       <div class="gameBoard">
         <div class="box" id="box0"></div>
@@ -61,11 +61,12 @@
       Your browser does not support the audio element.
     </audio>
 
-    <button id="playToggle">🔊 Unmute</button>
+    button id="muteButton">Mute</button><
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const audio = document.getElementById("player");
+        const muteButton = document.getElementById("muteButton");
 
         // Restore previous playback position
         const savedTime = localStorage.getItem("audioTime");
@@ -90,6 +91,12 @@
         audio.addEventListener("ended", () => {
           audio.currentTime = 0;  // Reset to start
           audio.play();  // Start playing again
+        });
+
+        // Mute/Unmute functionality
+        muteButton.addEventListener("click", () => {
+          audio.muted = !audio.muted;  // Toggle mute
+          muteButton.textContent = audio.muted ? "Unmute" : "Mute";  // Update button text
         });
       });
     </script>
