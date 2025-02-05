@@ -31,7 +31,7 @@ function handlePlayerName() {
       playerNumber.textContent = "Second";
       playerNumber.classList.toggle("o");
       playerNumber.classList.toggle("x");
-      playButton.textContent = "PLAY";
+      playButton.textContent = "PLAY 🎮";
     }
   } else {
     // untuk mereset form buat next game dan pindah ke container game
@@ -46,7 +46,7 @@ function handlePlayerName() {
       playerNumber.textContent = "First";
       playerNumber.classList.toggle("o");
       playerNumber.classList.toggle("x");
-      playButton.textContent = "GO";
+      playButton.textContent = "GO 🏁";
 
       landing.classList.toggle("game");
       turn.innerHTML = players[0];
