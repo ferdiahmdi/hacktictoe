@@ -10,27 +10,24 @@
   <body>
     <h1>HackTicToe</h1>
     <button onclick="location.href='pages/tictactoe.html'">
-      <strong>Proceed</strong>
+      Proceed
     </button>
 
-    <div class="decorative element1"></div>
-    <div class="decorative element2"></div>
-    <div class="decorative element3"></div>
-    <div class="decorative element4"></div>
-    <div class="decorative element5"></div>
-    <div class="decorative element6"></div>
-
-    <br></br>
-    <br></br>
-
-    <button id="playToggle">🔊 Unmute</button>
+    <div class="decorative-element1"></div>
+    <div class="decorative-element2"></div>
+    <div class="decorative-element3"></div>
+    <div class="decorative-element4"></div>
+    <div class="decorative-element5"></div>
+    <div class="decorative-element6"></div>
 
     <audio id="player">
       <source src="bgm.mp3" type="audio/mp3" />
       Your browser does not support the audio element.
     </audio>
 
-      <script>
+    <button id="playToggle">🔊 Unmute</button>
+
+    <script>
       document.addEventListener("DOMContentLoaded", () => {
         const audio = document.getElementById("player");
         const playToggle = document.getElementById("playToggle");
