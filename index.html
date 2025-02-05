@@ -30,12 +30,11 @@
       Your browser does not support the audio element.
     </audio>
 
-      <script>
+    <script>
       document.addEventListener("DOMContentLoaded", () => {
         const audio = document.getElementById("player");
-        const playToggle = document.getElementById("playToggle");
 
-        // Restore playback position
+        // Restore previous playback position
         const savedTime = localStorage.getItem("audioTime");
         if (savedTime) {
           audio.currentTime = parseFloat(savedTime);
@@ -44,31 +43,20 @@
         // Restore play state
         if (localStorage.getItem("isPlaying") === "true") {
           audio.play().catch((err) => console.warn("Audio playback prevented:", err));
-          playToggle.textContent = "🔇 Mute";
         }
 
-        // Save state
+        // Save play state and playback position
         audio.addEventListener("timeupdate", () => {
           localStorage.setItem("audioTime", audio.currentTime);
         });
 
-        audio.onplay = () => {
-          localStorage.setItem("isPlaying", "true");
-          playToggle.textContent = "🔇 Mute";
-        };
+        audio.onplay = () => localStorage.setItem("isPlaying", "true");
+        audio.onpause = () => localStorage.setItem("isPlaying", "false");
 
-        audio.onpause = () => {
-          localStorage.setItem("isPlaying", "false");
-          playToggle.textContent = "🔊 Unmute";
-        };
-
-        // Toggle Play/Pause
-        playToggle.addEventListener("click", () => {
-          if (audio.paused) {
-            audio.play();
-          } else {
-            audio.pause();
-          }
+        // Autoplay audio when it ends
+        audio.addEventListener("ended", () => {
+          audio.currentTime = 0;  // Reset to start
+          audio.play();  // Start playing again
         });
       });
     </script>
