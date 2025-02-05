@@ -13,7 +13,7 @@
   /* outline: red 1px solid; */
 }
 
-/* body */
+/*=========== body ===========*/
 body {
   width: 100%;
   height: 100vh;
@@ -26,7 +26,7 @@ body {
   align-items: center;
 }
 
-/* landing */
+/*=========== landing ===========*/
 .landing {
   width: 100%;
   height: 100%;
@@ -39,6 +39,34 @@ body {
   justify-content: center;
   align-items: center;
 }
+/* exit button */
+.exitGame {
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  top: 25%;
+  left: 26%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  outline: none;
+  /* background-color: #415a6b; */
+  background-color: #de1b1b;
+  /* border: none; */
+  border: 0.2rem solid black;
+  color: white;
+  font-size: 1.5rem;
+  transition: 100ms;
+  font-weight: bold;
+  box-shadow: 0.1rem 0.1rem rgba(0, 0, 0);
+}
+.exitGame:hover {
+  background-color: black;
+  color: white;
+  box-shadow: 0 0 rgba(0, 0, 0);
+}
+/* textfield */
 .landing input {
   /* background-color: #a9c9d8; */
   background-color: #9ca3af;
@@ -64,6 +92,7 @@ body {
   /* background-color: #ece6ff; */
   background-color: white;
 }
+/* button */
 .landing button {
   margin: 1rem;
   outline: none;
@@ -111,14 +140,16 @@ h1 span.o {
   color: #4ade80;
 }
 
-/* game */
+/*=========== game ===========*/
 .gameContainer {
-  position: absolute;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  top: 10%;
+  /* top: 10%; */
+  width: 100%;
+  height: 100%;
 }
 
 .gameContainer.none {
@@ -129,7 +160,7 @@ h1 span.o {
 .restartButton {
   position: absolute;
   z-index: 10;
-  top: 11.25%;
+  top: 21.75%;
   outline: none;
   /* border: none; */
   border: 0.2rem solid black;
@@ -155,7 +186,7 @@ h1 span.o {
   transform: translateY(2000%);
 }
 
-/* papan game */
+/*=========== papan game ===========*/
 .gameBoard {
   width: 35rem;
   height: 35rem;
@@ -167,13 +198,14 @@ h1 span.o {
   /* background-color: #1a2633; */
   background-color: black;
   box-shadow: 0 0 1rem slategray;
+  position: relative;
 }
 
 .gameBoard.end {
   transform: translateY(10%);
 }
 
-/* box-box tictactoe */
+/*=========== box-box tictactoe ===========*/
 .gameBoard .box {
   /* border: 1px solid #b0b3c2; */
   /* background-color: #415a6b; */
@@ -185,7 +217,7 @@ h1 span.o {
   justify-content: center;
   border-radius: 5%;
   transition: 100ms;
-  cursor: pointer !important;
+  cursor: pointer;
 }
 .gameBoard .box:hover {
   /* background-color: #1a1a26; */
@@ -203,6 +235,9 @@ h1 span.o {
 .gameBoard .x:hover {
   background-color: #1976d2;
 }
+.gameBoard .displayContainer .x:hover {
+  background-color: #60a5fa;
+}
 
 /* box O */
 .gameBoard .o {
@@ -212,4 +247,42 @@ h1 span.o {
 }
 .gameBoard .o:hover {
   background-color: #80deea;
+}
+.gameBoard .displayContainer .o:hover {
+  background-color: #4ade80;
+}
+
+/*=========== display turn tictactoe ===========*/
+.displayContainer {
+  background-color: black;
+  width: 12rem;
+  height: 20rem;
+  position: absolute;
+  right: -17.5rem;
+  top: 5rem;
+  box-shadow: 0 0 1rem slategray;
+  padding: 1.5rem;
+  border: none;
+  border-radius: 1rem;
+  display: grid;
+  grid-template-rows: 1fr 3fr;
+  gap: 1rem;
+  font-weight: 800;
+  cursor: default;
+}
+
+.displayContainer #displayTurn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  font-size: 10em;
+}
+.displayContainer #displayName {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  overflow: hidden;
+  font-size: 1.5em;
 }
