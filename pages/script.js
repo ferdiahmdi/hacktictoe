@@ -278,28 +278,34 @@ document.addEventListener("DOMContentLoaded", () => {
   const audio = document.getElementById("player");
   const volumeSlider = document.getElementById("volumeSlider");
 
-  // Restore previous volume
+  // Restore previous volume + Init volume, ini saya samakan dengan landing
   const savedVolume = localStorage.getItem("audioVolume");
-  audio.volume = savedVolume ? parseFloat(savedVolume) : 1;
+  audio.volume = savedVolume !== null ? parseFloat(savedVolume) : 0.2;
   volumeSlider.value = audio.volume;
 
   // Restore previous playback position
   const savedTime = localStorage.getItem("audioTime");
-  if (savedTime) audio.currentTime = parseFloat(savedTime);
+  if (savedTime) {
+    audio.currentTime = parseFloat(savedTime);
+  }
 
+  // workaround browser yang ga bisa autoplay (cth: chrome)
+  document.body.addEventListener("click", function playAudio() {
+    console.log("music start");
+    audio.play().catch((err) => console.warn("Playback prevented:", err));
+    document.body.removeEventListener("click", playAudio);
+  });
   // Restore play state
   if (localStorage.getItem("isPlaying") === "true") {
-    audio.play().catch(err => console.warn("Audio playback prevented:", err));
+    audio.play().catch((err) => console.warn("Audio playback prevented:", err));
   }
 
   // Save play state, playback position, and volume
   audio.addEventListener("timeupdate", () => {
     localStorage.setItem("audioTime", audio.currentTime);
   });
-  
-  audio.addEventListener("play", () => localStorage.setItem("isPlaying", "true"));
-  audio.addEventListener("pause", () => localStorage.setItem("isPlaying", "false"));
-  
+  audio.onplay = () => localStorage.setItem("isPlaying", "true");
+
   volumeSlider.addEventListener("input", () => {
     audio.volume = volumeSlider.value;
     localStorage.setItem("audioVolume", audio.volume);

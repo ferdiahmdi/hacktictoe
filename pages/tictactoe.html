@@ -31,15 +31,15 @@
     </div>
     <div class="gameContainer none">
       <h1>It's <span class="o" id="turn">O</span>'s Turn!</h1>
-      <button
-        type="submit"
-        class="restartButton game"
-        id="restartButton"
-        onclick="restartGame()"
-      >
-        RESTART 🗘  
-      </button>
       <div class="gameBoard">
+        <button
+          type="submit"
+          class="restartButton game"
+          id="restartButton"
+          onclick="restartGame()"
+        >
+          RESTART 🗘
+        </button>
         <div class="box" id="box0"></div>
         <div class="box" id="box1"></div>
         <div class="box" id="box2"></div>
@@ -56,11 +56,17 @@
       </div>
     </div>
 
-    <input type="range" id="volumeSlider" min="0" max="1" step="0.01" />
+    <input
+      type="range"
+      id="volumeSlider"
+      min="0"
+      max="1"
+      step="0.01"
+      title="Volume Slider"
+    />
 
- 
     <audio id="player" autoplay loop>
-      <source src="bgm.mp3" type="audio/mp3" />
+      <source src="../bgm.mp3" type="audio/mp3" />
       Your browser does not support the audio element.
     </audio>
   </body>
