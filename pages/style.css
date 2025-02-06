@@ -1,5 +1,5 @@
 :root {
-  font-family: "Montserrat", serif;
+  font-family: Futura,Trebuchet MS,Arial,sans-serif;
   font-size: 16px;
   /* color: #e1efff; */
   color: black;
@@ -41,30 +41,32 @@ body {
 }
 /* exit button */
 .exitGame {
-  width: 3rem;
-  height: 3rem;
+  display: inline-flex;
+  z-index: 10;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: all 0.2s ease-in-out;
+  gap: 8px;
   position: absolute;
   top: 25%;
-  left: 26%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
+  left: 25%;
+  cursor: pointer;
   outline: none;
-  /* background-color: #415a6b; */
-  background-color: #de1b1b;
-  /* border: none; */
-  border: 0.2rem solid black;
+  border: 2px solid;
+  padding: 10px 16px;
   color: white;
-  font-size: 1.5rem;
-  transition: 100ms;
-  font-weight: bold;
-  box-shadow: 0.1rem 0.1rem rgba(0, 0, 0);
+  background-color: #de1b1b;
+  /* background-color: #3300ff; */
+  border-color: black;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0);
+  text-decoration: none;
 }
 .exitGame:hover {
-  background-color: black;
-  color: white;
-  box-shadow: 0 0 rgba(0, 0, 0);
+  transform: translate(4px, 4px);
+  box-shadow: none;
 }
 /* textfield */
 .landing input {
@@ -81,43 +83,45 @@ body {
   /* border: none; */
   transition: 100ms;
   box-shadow: 0.25rem 0.25rem rgba(0, 0, 0);
+  margin-bottom: 10px;
 }
 .landing input:hover,
 .landing input:focus {
   /* background-color: #ece6ff; */
+  transform: translate(4px, 4px);
+  box-shadow: none;
   background-color: white;
-  box-shadow: 0 0 black;
-}
+} 
 .landing input:active {
   /* background-color: #ece6ff; */
   background-color: white;
 }
 /* button */
 .landing button {
-  margin: 1rem;
-  outline: none;
-  /* background-color: #415a6b; */
-  background-color: #de1b1b;
-  /* border: none; */
-  border: 0.2rem solid black;
-  width: 7rem;
-  height: 3rem;
-  border-radius: 2rem;
-  /* color: #e1efff; */
-  color: white;
-  font-size: 1.5rem;
-  transition: 100ms;
+  display: inline-flex;
+  z-index: 10;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 400;
+  transition: all 0.2s ease-in-out;
+  gap: 8px;
+  position: relative;
   cursor: pointer;
-  font-weight: bold;
-  box-shadow: 0.1rem 0.1rem rgba(0, 0, 0);
+  outline: none;
+  border: 2px solid;
+  padding: 10px 16px;
+  color: white;
+  /* background-color: #de1b1b; */
+  background-color: #3300ff;
+  border-color: black;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0);
 }
 .landing button:hover {
-  /* background-color: #1a1a26; */
-  background-color: black;
-  /* color: #e1efff5b; */
-  color: white;
-  transform: scale(1.1);
-  box-shadow: 0 0 rgba(0, 0, 0);
+  transform: translate(4px, 4px);
+  box-shadow: none;
 }
 /* delete lending */
 .landing.game {

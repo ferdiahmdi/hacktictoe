@@ -3,79 +3,83 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> HackTicToe ⭕❌</title>
+    <title>HackTicToe</title>
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
   </head>
   <body>
-
-    <h1>⭕❌</h1>
     <h1>HackTicToe</h1>
-    <br></body><br>
     <button onclick="location.href='pages/tictactoe.html'">
       <strong>Proceed ╰┈➤</strong>
     </button>
 
-    <div class="decorative element1"></div>
-    <div class="decorative element2"></div>
-    <div class="decorative element3"></div>
-    <div class="decorative element4"></div>
-    <div class="decorative element5"></div>
-    <div class="decorative element6"></div>
+  <div class="decorative element1"></div>
+  <div class="decorative element2"></div>
+  <div class="decorative element3"></div>
+  <div class="decorative element4"></div>
+  <div class="decorative element5"></div>
+  <div class="decorative element6"></div>
+  <div class="element7">
+    <div class="outer-x">
+      <div style="width: 100%; top: 50%;"></div>
+      <div style="height: 100%; width: 0px; left: 50%;"></div>
+    </div>
+  </div>
+  <div class="element8">
+    <div class="outer-x">
+      <div style="width: 100%; top: 50%;"></div>
+      <div style="height: 100%; width: 0px; left: 50%;"></div>
+    </div>
+  </div>
 
-    <br></br>
-    <br></br>
+  <br></br>
 
-    <button id="muteButton">🔇 Mute</button>
+  <button id="muteButton" style="background-color: #de1b1b;">🔇 Mute</button>
 
+  <h3 style="z-index: 10;">v1.1</h3>
 
+  <audio id="player" autoplay>
+    <source src="bgm.mp3" type="audio/mp3" />
+    Your browser does not support the audio element.
+  </audio>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const audio = document.getElementById("player");
+      const muteButton = document.getElementById("muteButton");
 
+      // Restore previous playback position
+      const savedTime = localStorage.getItem("audioTime");
+      if (savedTime) {
+        audio.currentTime = parseFloat(savedTime);
+      }
 
-    <h3>V 1.1</h3>
+      // Restore play state
+      if (localStorage.getItem("isPlaying") === "true") {
+        audio.play().catch((err) => console.warn("Audio playback prevented:", err));
+      }
 
-
-    <audio id="player" autoplay>
-      <source src="bgm.mp3" type="audio/mp3" />
-      Your browser does not support the audio element.
-    </audio>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const audio = document.getElementById("player");
-        const muteButton = document.getElementById("muteButton");
-
-        // Restore previous playback position
-        const savedTime = localStorage.getItem("audioTime");
-        if (savedTime) {
-          audio.currentTime = parseFloat(savedTime);
-        }
-
-        // Restore play state
-        if (localStorage.getItem("isPlaying") === "true") {
-          audio.play().catch((err) => console.warn("Audio playback prevented:", err));
-        }
-
-        // Save play state and playback position
-        audio.addEventListener("timeupdate", () => {
-          localStorage.setItem("audioTime", audio.currentTime);
-        });
-
-        audio.onplay = () => localStorage.setItem("isPlaying", "true");
-        audio.onpause = () => localStorage.setItem("isPlaying", "false");
-
-        // Autoplay audio when it ends
-        audio.addEventListener("ended", () => {
-          audio.currentTime = 0;  // Reset to start
-          audio.play();  // Start playing again
-        });
-
-        // Mute/Unmute functionality
-        muteButton.addEventListener("click", () => {
-          audio.muted = !audio.muted;  // Toggle mute
-          muteButton.textContent = audio.muted ? "🔊 Unmute" : "🔇 Mute";  // Update button text
-        });
+      // Save play state and playback position
+      audio.addEventListener("timeupdate", () => {
+        localStorage.setItem("audioTime", audio.currentTime);
       });
-    </script>
-  </body>
+
+      audio.onplay = () => localStorage.setItem("isPlaying", "true");
+      audio.onpause = () => localStorage.setItem("isPlaying", "false");
+
+      // Autoplay audio when it ends
+      audio.addEventListener("ended", () => {
+        audio.currentTime = 0;  // Reset to start
+        audio.play();  // Start playing again
+      });
+
+      // Mute/Unmute functionality
+      muteButton.addEventListener("click", () => {
+        audio.muted = !audio.muted;  // Toggle mute
+        muteButton.textContent = audio.muted ? "🔊 Unmute" : "🔇 Mute";  // Update button text
+      });
+    });
+  </script>
+</body>
+
 </html>
