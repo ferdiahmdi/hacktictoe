@@ -22,9 +22,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const audio = document.getElementById("player");
   const volumeSlider = document.getElementById("volumeSlider");
 
-  // Restore previous volume
+  // Restore previous volume + Init volume
   const savedVolume = localStorage.getItem("audioVolume");
-  audio.volume = savedVolume !== null ? parseFloat(savedVolume) : 1;
+  audio.volume = savedVolume !== null ? parseFloat(savedVolume) : 0.2; // diganti ke 0.2 default karena takut pengguna headset meledak telinganya awokawokwaokwa
   volumeSlider.value = audio.volume;
 
   // Restore previous playback position
@@ -33,6 +33,12 @@ document.addEventListener("DOMContentLoaded", () => {
     audio.currentTime = parseFloat(savedTime);
   }
 
+  // workaround browser yang ga bisa autoplay (cth: chrome)
+  document.body.addEventListener("click", function playAudio() {
+    console.log("music start");
+    audio.play().catch((err) => console.warn("Playback prevented:", err));
+    document.body.removeEventListener("click", playAudio);
+  });
   // Restore play state
   if (localStorage.getItem("isPlaying") === "true") {
     audio.play().catch((err) => console.warn("Audio playback prevented:", err));
@@ -43,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("audioTime", audio.currentTime);
   });
   audio.onplay = () => localStorage.setItem("isPlaying", "true");
-  audio.onpause = () => localStorage.setItem("isPlaying", "false");
+  // audio.onpause = () => localStorage.setItem("isPlaying", "false"); // karena pause button tidak ada, saya commentin aja line ini --ferdi
   volumeSlider.addEventListener("input", () => {
     audio.volume = volumeSlider.value;
     localStorage.setItem("audioVolume", audio.volume);

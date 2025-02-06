@@ -1,5 +1,5 @@
 :root {
-  font-family: Futura,Trebuchet MS,Arial,sans-serif;
+  font-family: Futura, Trebuchet MS, Arial, sans-serif;
   font-size: 16px;
   /* color: #e1efff; */
   color: black;
@@ -91,7 +91,7 @@ body {
   transform: translate(4px, 4px);
   box-shadow: none;
   background-color: white;
-} 
+}
 .landing input:active {
   /* background-color: #ece6ff; */
   background-color: white;
@@ -164,7 +164,9 @@ h1 span.o {
 .restartButton {
   position: absolute;
   z-index: 10;
-  top: 20%;
+  top: -4.5rem;
+  left: 50%;
+  transform: translateX(-50%);
   outline: none;
   /* border: none; */
   border: 0.2rem solid black;
@@ -183,7 +185,7 @@ h1 span.o {
 .restartButton:hover {
   /* background-color: #1a1a26; */
   background-color: black;
-  transform: scale(1.1);
+  transform: scale(1.1), translateX(-50%);
   box-shadow: 0 0 #1a1a26;
 }
 .restartButton.game {
@@ -215,6 +217,7 @@ h1 span.o {
   /* background-color: #415a6b; */
   background-color: #9ca3af;
   margin: 0.15rem;
+  font-family: "Montserrat", serif;
   font-size: 8rem;
   display: flex;
   align-items: center;
@@ -271,6 +274,7 @@ h1 span.o {
   display: grid;
   grid-template-rows: 1fr 3fr;
   gap: 1rem;
+  font-family: "Montserrat", serif;
   font-weight: 800;
   cursor: default;
 }
@@ -289,7 +293,6 @@ h1 span.o {
   padding: 0.5rem;
   overflow: hidden;
   font-size: 1.5em;
-  
 }
 
 /* Volume Slider */
@@ -303,13 +306,14 @@ h1 span.o {
   border-radius: 10px;
   z-index: 1000;
   -webkit-appearance: none;
+  appearance: none;
   width: 150px;
   height: 8px;
   border-radius: 5px;
   background: linear-gradient(to right, #000000, #000000);
   outline: none;
   opacity: 0.9;
-  transition: opacity .15s ease-in-out;
+  transition: opacity 0.15s ease-in-out;
 }
 
 #volumeSlider::-webkit-slider-thumb {

@@ -1,5 +1,5 @@
 body {
-  font-family: Futura,Trebuchet MS,Arial,sans-serif;
+  font-family: Futura, Trebuchet MS, Arial, sans-serif;
   height: 100dvh;
   margin: 0;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(0 0 0 / 0.2)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
@@ -17,6 +17,10 @@ body {
   }
 }
 
+h3 {
+  z-index: 69;
+}
+
 #volumeSlider {
   position: fixed;
   bottom: 20px;
@@ -27,13 +31,14 @@ body {
   border-radius: 10px;
   z-index: 1000;
   -webkit-appearance: none;
+  appearance: none;
   width: 150px;
   height: 8px;
   border-radius: 5px;
   background: linear-gradient(to right, #000000, #000000);
   outline: none;
   opacity: 0.9;
-  transition: opacity .15s ease-in-out;
+  transition: opacity 0.15s ease-in-out;
 }
 
 #volumeSlider::-webkit-slider-thumb {
@@ -88,12 +93,24 @@ button:hover {
 }
 
 @keyframes randomMove {
-  0% { transform: translate(0, 0) scale(1); }
-  20% { transform: translate(calc(var(--x1) * 1px), calc(var(--y1) * 1px)) scale(1); }
-  40% { transform: translate(calc(var(--x2) * 1px), calc(var(--y2) * 1px)) scale(1); }
-  60% { transform: translate(calc(var(--x3) * 1px), calc(var(--y3) * 1px)) scale(1); }
-  80% { transform: translate(calc(var(--x4) * 1px), calc(var(--y4) * 1px)) scale(1); }
-  100% { transform: translate(0, 0) scale(1); }
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  20% {
+    transform: translate(calc(var(--x1) * 1px), calc(var(--y1) * 1px)) scale(1);
+  }
+  40% {
+    transform: translate(calc(var(--x2) * 1px), calc(var(--y2) * 1px)) scale(1);
+  }
+  60% {
+    transform: translate(calc(var(--x3) * 1px), calc(var(--y3) * 1px)) scale(1);
+  }
+  80% {
+    transform: translate(calc(var(--x4) * 1px), calc(var(--y4) * 1px)) scale(1);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
 }
 
 .decorative {
@@ -101,8 +118,7 @@ button:hover {
   z-index: 0;
   box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
   border: 2px solid black;
-  transition: transform .3s ease-in-out;
-  
+  transition: transform 0.3s ease-in-out;
 }
 
 .element1 {
@@ -113,10 +129,13 @@ button:hover {
   background-color: #fcd34d;
   /* border-radius: 8px; */
   animation: randomMove 10s linear infinite alternate;
-  --x1: 20; --y1: -20;
+  --x1: 20;
+  --y1: -20;
   /* --x2: -40; --y2: 40; */
-  --x3: 50; --y3: -50;
-  --x4: -10; --y4: 10;
+  --x3: 50;
+  --y3: -50;
+  --x4: -10;
+  --y4: 10;
 }
 
 .element2 {
@@ -128,14 +147,16 @@ button:hover {
   rotate: 20deg;
   /* border-radius: 8px; */
   /* animation: randomMove 10s ease-in-out infinite alternate; */
-  --x1: 10; --y1: -10;
+  --x1: 10;
+  --y1: -10;
   /* --x2: -20; --y2: 20; */
-  --x3: 40; --y3: -40;
+  --x3: 40;
+  --y3: -40;
   /* --x4: -30; --y4: 30; */
 }
 
 .element2:hover {
-  transform: scale(1.2) rotate(-20deg)
+  transform: scale(1.2) rotate(-20deg);
 }
 
 .element3 {
@@ -148,13 +169,15 @@ button:hover {
   /* border-radius: 8px; */
   /* animation: randomMove 10s ease infinite alternate; */
   /* --x1: 15; --y1: -15; */
-  --x2: -30; --y2: 30;
+  --x2: -30;
+  --y2: 30;
   /* --x3: 45; --y3: -50; */
-  --x4: -60; --y4: 60;
+  --x4: -60;
+  --y4: 60;
 }
 
 .element3:hover {
-  transform: scale(1.4) rotate(30deg)
+  transform: scale(1.4) rotate(30deg);
 }
 
 .element4 {
@@ -165,10 +188,14 @@ button:hover {
   background-color: #f472b6;
   border-radius: 100%;
   animation: randomMove 10s linear infinite alternate-reverse;
-  --x1: 20; --y1: -20;
-  --x2: -40; --y2: 34;
-  --x3: 25; --y3: -20;
-  --x4: -60; --y4: 60;
+  --x1: 20;
+  --y1: -20;
+  --x2: -40;
+  --y2: 34;
+  --x3: 25;
+  --y3: -20;
+  --x4: -60;
+  --y4: 60;
 }
 
 .element5 {
@@ -179,10 +206,14 @@ button:hover {
   background-color: #4ade80;
   border-radius: 100%;
   animation: randomMove 10s ease-out infinite normal;
-  --x1: 20; --y1: -20;
-  --x2: -40; --y2: 34;
-  --x3: 25; --y3: -20;
-  --x4: -60; --y4: 60;
+  --x1: 20;
+  --y1: -20;
+  --x2: -40;
+  --y2: 34;
+  --x3: 25;
+  --y3: -20;
+  --x4: -60;
+  --y4: 60;
 }
 
 .element6 {
@@ -200,12 +231,16 @@ button:hover {
 }
 
 .element6:hover {
-  transform: scale(1.1) rotate(360deg)
+  transform: scale(1.1) rotate(360deg);
 }
 
 @keyframes rotate {
-  from { transform: rotate(0deg) }
-  to { transform: rotate(360deg) }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .element7 {
@@ -222,6 +257,17 @@ button:hover {
   width: inherit;
   height: inherit;
   animation: rotate 15s linear infinite;
+}
+
+.outer-x .x1 {
+  width: 100%;
+  top: 50%;
+}
+
+.outer-x .x2 {
+  height: 100%;
+  width: 0px;
+  left: 50%;
 }
 
 .outer-x div {
