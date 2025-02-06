@@ -273,3 +273,35 @@ function saveGameResult(gameResult) {
 
   console.log("resultHistory", getStorageData);
 }
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const audio = document.getElementById("player");
+//   const volumeSlider = document.getElementById("volumeSlider");
+
+//   // Restore previous volume
+//   const savedVolume = localStorage.getItem("audioVolume");
+//   audio.volume = savedVolume ? parseFloat(savedVolume) : 1;
+//   volumeSlider.value = audio.volume;
+
+//   // Restore previous playback position
+//   const savedTime = localStorage.getItem("audioTime");
+//   if (savedTime) audio.currentTime = parseFloat(savedTime);
+
+//   // Restore play state
+//   if (localStorage.getItem("isPlaying") === "true") {
+//     audio.play().catch(err => console.warn("Audio playback prevented:", err));
+//   }
+
+//   // Save play state, playback position, and volume
+//   audio.addEventListener("timeupdate", () => {
+//     localStorage.setItem("audioTime", audio.currentTime);
+//   });
+  
+//   audio.addEventListener("play", () => localStorage.setItem("isPlaying", "true"));
+//   audio.addEventListener("pause", () => localStorage.setItem("isPlaying", "false"));
+  
+//   volumeSlider.addEventListener("input", () => {
+//     audio.volume = volumeSlider.value;
+//     localStorage.setItem("audioVolume", audio.volume);
+//   });
+// });

@@ -56,17 +56,25 @@
       </div>
     </div>
 
-    <audio id="player" autoplay>
+    <!-- <button id="muteButton" style="background-color: #de1b1b;">🔇 Mute</button> -->
+    <input type="range" id="volumeSlider" min="0" max="1" step="0.01" />
+
+    <audio id="player" autoplay loop>
       <source src="bgm.mp3" type="audio/mp3" />
       Your browser does not support the audio element.
     </audio>
 
- 
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const audio = document.getElementById("player");
         const muteButton = document.getElementById("muteButton");
+        const volumeSlider = document.getElementById("volumeSlider");
+
+        // Restore previous volume
+        const savedVolume = localStorage.getItem("audioVolume");
+        audio.volume = savedVolume !== null ? parseFloat(savedVolume) : 1;
+        volumeSlider.value = audio.volume;
 
         // Restore previous playback position
         const savedTime = localStorage.getItem("audioTime");
@@ -79,24 +87,29 @@
           audio.play().catch((err) => console.warn("Audio playback prevented:", err));
         }
 
-        // Save play state and playback position
+        // Restore mute state
+        const savedMuteState = localStorage.getItem("audioMuted");
+        if (savedMuteState !== null) {
+          audio.muted = savedMuteState === "true";
+          muteButton.textContent = audio.muted ? "🔊 Unmute" : "🔇 Mute";
+        }
+
+        // Save play state, playback position, and volume
         audio.addEventListener("timeupdate", () => {
           localStorage.setItem("audioTime", audio.currentTime);
         });
-
         audio.onplay = () => localStorage.setItem("isPlaying", "true");
         audio.onpause = () => localStorage.setItem("isPlaying", "false");
-
-        // Autoplay audio when it ends
-        audio.addEventListener("ended", () => {
-          audio.currentTime = 0;  // Reset to start
-          audio.play();  // Start playing again
+        volumeSlider.addEventListener("input", () => {
+          audio.volume = volumeSlider.value;
+          localStorage.setItem("audioVolume", audio.volume);
         });
 
         // Mute/Unmute functionality
         muteButton.addEventListener("click", () => {
-          audio.muted = !audio.muted;  // Toggle mute
-          muteButton.textContent = audio.muted ? "Unmute" : "Mute";  // Update button text
+          audio.muted = !audio.muted;
+          localStorage.setItem("audioMuted", audio.muted);
+          muteButton.textContent = audio.muted ? "🔊 Unmute" : "🔇 Mute";
         });
       });
     </script>
