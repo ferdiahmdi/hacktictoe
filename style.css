@@ -10,6 +10,50 @@ body {
   align-items: center;
 }
 
+@media screen and (max-width: 600px) {
+  h3 {
+    font-size: 16px;
+    color: white;
+  }
+}
+
+#volumeSlider {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  padding: 5px;
+  border-radius: 10px;
+  z-index: 1000;
+  -webkit-appearance: none;
+  width: 150px;
+  height: 8px;
+  border-radius: 5px;
+  background: linear-gradient(to right, #000000, #000000);
+  outline: none;
+  opacity: 0.9;
+  transition: opacity .15s ease-in-out;
+}
+
+#volumeSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+#volumeSlider::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+}
+
 h1 {
   font-size: 4rem;
   z-index: 10;
@@ -59,11 +103,6 @@ button:hover {
   border: 2px solid black;
   transition: transform .3s ease-in-out;
   
-}
-
-.decorative:hover {
-  /* animation: none; */
-  /* transform: scale(1.2) translate(0, 0); */
 }
 
 .element1 {

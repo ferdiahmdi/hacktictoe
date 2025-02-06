@@ -164,7 +164,7 @@ h1 span.o {
 .restartButton {
   position: absolute;
   z-index: 10;
-  top: 21.75%;
+  top: 20%;
   outline: none;
   /* border: none; */
   border: 0.2rem solid black;
@@ -293,7 +293,7 @@ h1 span.o {
 }
 
 /* Volume Slider */
-/* #volumeSlider {
+#volumeSlider {
   position: fixed;
   bottom: 20px;
   left: 50%;
@@ -328,4 +328,4 @@ h1 span.o {
   border-radius: 50%;
   background: #ffffff;
   cursor: pointer;
-} */
+}

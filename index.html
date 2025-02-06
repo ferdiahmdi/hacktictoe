@@ -6,48 +6,10 @@
     <title>HackTicToe ⭕❌</title>
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
-    <style>
-      #volumeSlider {
-        position: fixed;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: rgba(255, 255, 255, 0.8);
-        padding: 5px;
-        border-radius: 10px;
-        z-index: 1000;
-        -webkit-appearance: none;
-        width: 150px;
-        height: 8px;
-        border-radius: 5px;
-        background: linear-gradient(to right, #000000, #000000);
-        outline: none;
-        opacity: 0.9;
-        transition: opacity .15s ease-in-out;
-      }
-
-      #volumeSlider::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 15px;
-        height: 15px;
-        border-radius: 50%;
-        background: #ffffff;
-        cursor: pointer;
-      }
-
-      #volumeSlider::-moz-range-thumb {
-        width: 15px;
-        height: 15px;
-        border-radius: 50%;
-        background: #ffffff;
-        cursor: pointer;
-      }
-    </style>
   </head>
   <body>
     <h1>⭕ HackTicToe ❌</h1>
-    <br></body><br>
+    <br />
 
     <button onclick="location.href='pages/tictactoe.html'">
       <strong>Proceed ╰┈➤</strong>
@@ -72,8 +34,8 @@
       </div>
     </div>
 
-    <br></br>
-
+    <br />
+    
     <input type="range" id="volumeSlider" min="0" max="1" step="0.01" />
 
     <h3 style="z-index: 10;">v1.2</h3>
@@ -82,39 +44,5 @@
       <source src="bgm.mp3" type="audio/mp3" />
       Your browser does not support the audio element.
     </audio>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const audio = document.getElementById("player");
-        const volumeSlider = document.getElementById("volumeSlider");
-
-        // Restore previous volume
-        const savedVolume = localStorage.getItem("audioVolume");
-        audio.volume = savedVolume !== null ? parseFloat(savedVolume) : 1;
-        volumeSlider.value = audio.volume;
-
-        // Restore previous playback position
-        const savedTime = localStorage.getItem("audioTime");
-        if (savedTime) {
-          audio.currentTime = parseFloat(savedTime);
-        }
-
-        // Restore play state
-        if (localStorage.getItem("isPlaying") === "true") {
-          audio.play().catch((err) => console.warn("Audio playback prevented:", err));
-        }
-
-        // Save play state, playback position, and volume
-        audio.addEventListener("timeupdate", () => {
-          localStorage.setItem("audioTime", audio.currentTime);
-        });
-        audio.onplay = () => localStorage.setItem("isPlaying", "true");
-        audio.onpause = () => localStorage.setItem("isPlaying", "false");
-        volumeSlider.addEventListener("input", () => {
-          audio.volume = volumeSlider.value;
-          localStorage.setItem("audioVolume", audio.volume);
-        });
-      });
-    </script>
   </body>
 </html>
